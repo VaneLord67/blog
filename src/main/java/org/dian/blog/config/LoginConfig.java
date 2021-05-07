@@ -11,27 +11,27 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author CJR
  * @create 2021-04-18-19:30
  */
-@Configuration
-public class LoginConfig implements WebMvcConfigurer {
-
-    @Bean
-    public LoginInterceptor permissionInterceptor() {
-        return new LoginInterceptor();
-    }
-
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(permissionInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/swagger-ui.html",
-                        "/error",
-                        "/swagger-resources/**",
-                        "/webjars/**",
-                        "/user/login",
-                        "/user/register",
-                        "/register.html",
-                        "/register",
-                        "/login",
-                        "/login.html");
-    }
-}
+//@Configuration
+//public class LoginConfig implements WebMvcConfigurer {
+//
+//    @Bean
+//    public LoginInterceptor permissionInterceptor() {
+//        return new LoginInterceptor();
+//    }
+//
+//
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(permissionInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/swagger-ui.html",
+//                        "/error",
+//                        "/swagger-resources/**",
+//                        "/webjars/**",
+//                        "/user/login",
+//                        "/user/register",
+//                        "/register.html",
+//                        "/register",
+//                        "/login",
+//                        "/login.html");
+//    }
+//}

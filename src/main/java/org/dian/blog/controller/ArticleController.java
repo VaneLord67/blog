@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Console;
 
 /**
  * @author CJR
  * @create 2021-04-18-21:21
  */
+@CrossOrigin(originPatterns = "*",allowCredentials="true",allowedHeaders = "*",methods = {})
 @Slf4j
 @RestController
 @RequestMapping("/article")
@@ -50,6 +52,7 @@ public class ArticleController {
     @ApiOperation("查询所有文章路由")
     @GetMapping("/queryAllArticle")
     public Response queryAllArticle(HttpServletRequest request){
+        log.info("query");
         return articleService.queryAllArticle(request);
     }
 
