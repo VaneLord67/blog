@@ -20,5 +20,7 @@ public interface ArticleService {
 
     public Response queryAllArticle(HttpServletRequest request);
 
-    public Response queryArticle(HttpServletRequest request,String id);
+    public Response queryAllArticle(String userName);
+
+    public Response queryArticle(String id);
 }

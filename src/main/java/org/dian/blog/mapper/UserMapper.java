@@ -17,7 +17,10 @@ public interface UserMapper {
     @Select("select password from user where userName=#{userName}")
     String getPasswordByUserName(String userName);
 
-    @Insert("insert into user(userName,password) values (#{userName},#{password}) ")
+    @Select("select blogName from user where userName=#{userName}")
+    String getBlogNameByUserName(String userName);
+
+    @Insert("insert into user(userName,password,blogName) values (#{userName},#{password},#{blogName})")
     int insertUser(UserIndexDTO user);
 
     @Select("select count(*) from user where userName=#{userName}")

@@ -49,19 +49,25 @@ public class ArticleController {
         return articleService.updateArticle(newArticleDTO,request,id);
     }
 
+//    @ApiOperation("查询所有文章路由")
+//    @GetMapping("/queryAllArticle")
+//    public Response queryAllArticle(HttpServletRequest request){
+//        log.info("query");
+//        return articleService.queryAllArticle(request);
+//    }
+
     @ApiOperation("查询所有文章路由")
     @GetMapping("/queryAllArticle")
-    public Response queryAllArticle(HttpServletRequest request){
+    public Response queryAllArticle(@RequestParam("userName") String userName){
         log.info("query");
-        return articleService.queryAllArticle(request);
+        return articleService.queryAllArticle(userName);
     }
 
     @ApiOperation("查询文章详情路由")
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "文章主键",required = true),})
     @GetMapping("/queryArticle")
-    public Response queryArticle(@RequestParam("id") String id,
-                               HttpServletRequest request){
-        return articleService.queryArticle(request,id);
+    public Response queryArticle(@RequestParam("id") String id){
+        return articleService.queryArticle(id);
     }
 
 }

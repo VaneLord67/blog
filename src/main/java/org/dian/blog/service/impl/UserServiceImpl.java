@@ -49,6 +49,10 @@ public class UserServiceImpl implements UserService {
             String token = getJwt(user);
             HashMap<String, Object> map = new HashMap<>();
             map.put("jwt", token);
+
+            user.setBlogName(userMapper.getBlogNameByUserName(user.getUserName()));
+
+            map.put("blogName",user.getBlogName());
             return Response.ok().data(map);
         }
         return Response.error().messsage("用户名或密码不正确");
@@ -60,6 +64,7 @@ public class UserServiceImpl implements UserService {
             return Response.error().messsage("该用户名已被注册");
         }
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes(StandardCharsets.UTF_8)));
+        user.setBlogName(user.getUserName() + "的博客");
         if(userMapper.insertUser(user) == 0){
             return Response.error();
         }

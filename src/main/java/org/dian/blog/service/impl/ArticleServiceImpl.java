@@ -82,10 +82,16 @@ public class ArticleServiceImpl implements ArticleService {
         return Response.ok().data(map);
     }
 
-    public Response queryArticle(HttpServletRequest request,String id){
+    public Response queryAllArticle(String userName){
+        UserDTO userDTO = new UserDTO(userName);
+        HashMap<String, Object> map = new HashMap<>();
+        Article[] articles = articleMapper.queryAllArticle(userDTO);
+        map.put("articleList",articles);
+        return Response.ok().data(map);
+    }
+
+    public Response queryArticle(String id){
         Article article = new Article();
-        String userName = userService.getUserNameFromJWT(request);
-        article.setAuthor(userName);
         article.setId(Integer.parseInt(id));
         Article article1 = articleMapper.queryArticle(article);
         return Response.ok().data("article",article1);

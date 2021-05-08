@@ -19,4 +19,6 @@ public class UserIndexDTO {
     private String userName;
     @ApiModelProperty(value = "密码")
     private String password;
+    @ApiModelProperty(value = "博客名称")
+    private String blogName;
 }
