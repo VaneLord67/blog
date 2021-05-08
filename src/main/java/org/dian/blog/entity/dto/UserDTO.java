@@ -17,4 +17,10 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
     @ApiModelProperty(value = "用户名")
     private String userName;
+    @ApiModelProperty(value = "博客名称")
+    private String blogName;
+
+    public UserDTO(String userName) {
+        this.userName = userName;
+    }
 }

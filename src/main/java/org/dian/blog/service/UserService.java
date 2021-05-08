@@ -1,6 +1,7 @@
 package org.dian.blog.service;
 
 import org.dian.blog.entity.User;
+import org.dian.blog.entity.dto.UserDTO;
 import org.dian.blog.entity.dto.UserIndexDTO;
 import org.dian.blog.util.Response;
 
@@ -14,9 +15,11 @@ public interface UserService {
     String getPasswordByUserName(String userName);
     Response register(UserIndexDTO userIndexDTO);
     Response login(UserIndexDTO userIndexDTO);
+    Response changeBlogName(UserDTO userDTO,HttpServletRequest request);
     boolean checkJwt(HttpServletRequest request);
     String getJwt(UserIndexDTO user);
     String getUserNameFromJWT(HttpServletRequest request);
     String getUserNameFromJWT(String jwtString);
     boolean isExistUser(String userName);
+    Response getUserInfo(String userName);
 }

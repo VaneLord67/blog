@@ -45,16 +45,9 @@ public class ArticleController {
     @ApiImplicitParams({@ApiImplicitParam(name="id",value = "文章主键",required = true),})
     @PostMapping("/updateArticle")
     public Response updateArticle(@RequestBody ArticleDTO newArticleDTO,HttpServletRequest request,
-                                    @RequestParam("id") String id){
+                                    @RequestParam(value = "id",required = false,defaultValue = "-1") String id){
         return articleService.updateArticle(newArticleDTO,request,id);
     }
-
-//    @ApiOperation("查询所有文章路由")
-//    @GetMapping("/queryAllArticle")
-//    public Response queryAllArticle(HttpServletRequest request){
-//        log.info("query");
-//        return articleService.queryAllArticle(request);
-//    }
 
     @ApiOperation("查询所有文章路由")
     @GetMapping("/queryAllArticle")

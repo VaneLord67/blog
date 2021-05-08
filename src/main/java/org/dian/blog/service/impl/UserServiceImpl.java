@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
 import org.dian.blog.entity.User;
+import org.dian.blog.entity.dto.UserDTO;
 import org.dian.blog.entity.dto.UserIndexDTO;
 import org.dian.blog.mapper.UserMapper;
 import org.dian.blog.service.UserService;
@@ -56,6 +57,17 @@ public class UserServiceImpl implements UserService {
             return Response.ok().data(map);
         }
         return Response.error().messsage("用户名或密码不正确");
+    }
+
+    @Override
+    public Response changeBlogName(UserDTO userDTO,HttpServletRequest request) {
+        String userName = getUserNameFromJWT(request);
+        userDTO.setUserName(userName);
+        int changeCount = userMapper.changeBlogName(userDTO);
+        if(changeCount > 0){
+            return Response.ok();
+        }
+        return Response.error();
     }
 
     public Response register(UserIndexDTO user){
@@ -129,6 +141,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExistUser(String userName) {
         return userMapper.isExistUser(userName) > 0;
+    }
+
+    @Override
+    public Response getUserInfo(String userName) {
+        int blogCount = userMapper.getBlogCount(userName);
+        String blogName = userMapper.getBlogNameByUserName(userName);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("blogCount",blogCount);
+        map.put("blogName",blogName);
+        return Response.ok().data(map);
     }
 
 }

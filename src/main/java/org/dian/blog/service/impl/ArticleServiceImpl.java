@@ -61,6 +61,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     public Response updateArticle(ArticleDTO newArticleDTO,HttpServletRequest request,String id){
+        if("-1".equals(id)) {
+            return publishArticle(newArticleDTO, request);
+        }
         Article article = new Article();
         article.setTitle(newArticleDTO.getTitle());
         article.setContent(newArticleDTO.getContent());
